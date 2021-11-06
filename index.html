@@ -238,14 +238,16 @@
 
 
 <script>
+
+
+prompt('hej');
+
     function makeApiCall(range, admin) {
   var params = {
     spreadsheetId: '1PRwqvAVR_e4yoYNFAvlRePVFBt8SpUJIKHKDGTmB9bk',
     ranges: range, 
     includeGridData: true,   
 };
-
-prompt('hej');
 
   var request = gapi.client.sheets.spreadsheets.get(params);
     request.then(function(response) {
