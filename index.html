@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bubbeltipset - Här bubblar det!</title>
+<script src="https://kit.fontawesome.com/2361c4a73f.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="apple-touch-icon" href="icon-webpage.png">
+<meta name="apple-mobile-web-app-title" content="Bubbeltipset">
+<meta name="application-name" content="Bubbeltipset">
+<meta property="og:title" content="Bubbeltipset - Här bubblar det!" />
+<meta property="og:image" content="/link-preview.png" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+
+    * {
+        font-family: 'Montserrat', sans-serif;
+
+    }
+    #flaska {
+        position: fixed;
+        left: -20%;
+        top: 40%;
+        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1)
+    }
+    #flaska:hover {
+        left: -15%;
+        top: 30%;
+        transform: rotate(-20deg);
+    }
+    #pokal {
+        position: fixed;
+        left: -6%;
+        bottom: -5%;
+        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1)
+    }
+    #soccer {
+        border-radius: 100%;
+        position: fixed;
+        right: -15%;
+        bottom: 60%;
+        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+    }
+    #soccer:hover {
+        transform: rotate(-50deg) scale(1.1);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    }
+    body {
+      box-sizing: border-box;
+        margin: 0;
+        background-color: #05A89D;
+        overflow: none;
+    }
+
+    h1{
+        width: 100%;
+        display: block;
+        color: #005751;
+        font-size: 40px;
+        margin-bottom: 0;
+    }
+
+    p {
+        width: 100%;
+        color: #005751;
+        font-size: 30px;
+        margin-top: 0;
+        margin-bottom:0;
+    }
+    #log-in-view {
+        width: 100vw;
+        height: 97vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #log-in {
+        justify-content: space-evenly;
+        display: flex;
+        background-color: white;
+        padding: 30px;
+        color: #005751;
+        border-radius: 40px;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        text-align: center;
+        height: 34vh;
+        width: 34vw;
+        flex-direction: column;
+        bottom: 3%;
+        position: relative;
+        z-index: 100;
+    }
+    #sign-in-button {
+        padding: 21px;
+        display: block;
+        width: 100%;
+        height: 60px;
+        background-color: #05A89D;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        border: 0;
+        color: white;
+        border-radius: 40px;
+        align-self: end;
+        margin-top: 20px;
+        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    #sign-in-button:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        background-color: #005751;
+
+    }
+    #logo {
+        position: fixed;
+        top: 10vh;
+        width: 25vw;
+        z-index: 101;
+    }
+    #tagline {
+        color: white;
+        position: fixed;
+        bottom: 6vh;
+        font-weight: 600;
+        font-size: 30px;
+    }
+
+    #tagline-2 {
+        color: white;
+        position: fixed;
+        bottom: 5vh;
+        font-weight: 300;
+        font-size: 20px;
+        text-align:center;
+    }
+
+.invisible {
+  display: none !important;
+}
+
+#kommande {
+        justify-content: space-evenly;
+        display: flex;
+        background-color: white;
+        padding: 30px;
+        color: #005751;
+        border-radius: 40px;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        text-align: center;
+        height: 34vh;
+        width: 34vw;
+        left: -10vw;
+        flex-direction: column;
+        position: relative;
+        z-index: 100;
+    }
+
+#main {
+        width: 100vw;
+        height: 97vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+
+@media screen and (max-width: 675px) {
+    #log-in {
+        width: 65vw;
+        height: 36vh;
+        bottom: 25%;
+        position: fixed;
+    }
+    #soccer {
+      right: -20%;
+      bottom: 55%;
+      width: 50%
+    }
+    #flaska {
+      left: -10%;
+      top:  60%;
+      width: 50%
+    }
+    #logo {
+      width: 60vw;
+    }
+    #tagline {
+      font-size: 4vw;
+    }
+    #tagline-2 {
+      font-size: 3vw;
+    }
+}
+
+
+</style>
+</head>
+<body>
+<div id="container">
+  <div class="invisible" id="log-in-view">
+    <img id="logo" src="logo.png">
+    <div id="log-in">
+         <h1>Välkommen</h1>
+         <p>Registera ditt bet </br>
+         och bubbla på!</p>
+         <button id="sign-in-button">Logga in <i class="fas fa-sign-in-alt"></i></button>
+    </div>
+    <img id="flaska" src="flaska.png"> 
+    <img id="soccer" src="soccer.png"> 
+    <h2 id="tagline"> Sommarens <span style="color: #FFCA01">exklusiva</span> folkfest!</h2>
+    <p id="tagline-2">Har du vad som krävs eller kommer det att bubbla över?</p>
+  </div>
+<div id="main">
+  <img id="pokal" src="pokal.png"> 
+  <div id="kommande">
+    <div id="lag1">
+
+    </div>
+    <div id="lag2">
+
+    </div>
+    vs
+    <div id="rules"></div>
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+<script>
+    function makeApiCall(range, admin) {
+  var params = {
+    spreadsheetId: '1PRwqvAVR_e4yoYNFAvlRePVFBt8SpUJIKHKDGTmB9bk',
+    ranges: range, 
+    includeGridData: true,   
+};
+
+  var request = gapi.client.sheets.spreadsheets.get(params);
+    request.then(function(response) {
+      datasheetRaw = response.result.sheets[0].data[0].rowData;
+      datasheetMonthFiltered = datasheetRaw.filter(data => data.values[0].formattedValue === n);
+      datasheet = datasheetMonthFiltered.filter(data => data.values[1].formattedValue === mail);
+      table = document.getElementById('data');
+      if (!filter) {
+        for (let i = datasheet.length - 1; i >= 0; i--) {
+          let row = document.createElement('tr');
+            for (let ii = 2; ii < 5; ii++) {
+              let value = datasheet[i].values[ii].formattedValue;
+                valueText = value;
+                let cell = document.createElement('td');
+                let textNode = document.createTextNode(valueText);
+                cell.appendChild(textNode);
+                row.appendChild(cell);
+              table.appendChild(row);
+            }
+          }
+        }
+        } , function(reason) {
+          alert('Ett fel uppstod! Kontakta Viktor & säg error: ' + reason.result.error.message);
+        });
+      }
+
+
+function makeAppendSheet() {
+  var params = {
+    spreadsheetId: '17tHSYTBmLvVy4mJMSjBCw9cpGuhfkfH5I_Wu8sPNvvY', 
+    range: 'A1',
+    valueInputOption: 'USER_ENTERED',
+    insertDataOption: 'INSERT_ROWS',
+    includeValuesInResponse: true,
+    };
+
+
+  var valueRangeBody = {
+        "values": [
+          [n, mail, lag1, lag2, time, namn],
+        ],
+      };
+
+  var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
+    request.then(function(response) {
+      updateTable([personnummer.value,option,provision]);
+    }, function(reason) {
+      alert('Ett fel uppstod! Kontakta Viktor & säg error: ' + reason.result.error.message);
+    });
+  }
+      
+  
+function initClient() {
+  var API_KEY = 'AIzaSyA_tr5H_2WCaZB4PoDXPTXN2DTO6qHIfrA'; 
+  var CLIENT_ID = '918423636784-v9fif4v5lp4cb08jjmel7fqm124qegmd.apps.googleusercontent.com'; 
+  var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+
+  
+    gapi.client.init({
+      'apiKey': API_KEY,
+      'clientId': CLIENT_ID,
+      'scope': SCOPE,
+      'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    }).then(function() {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus)
+      updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
+  }
+  
+  
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function updateSignInStatus(isSignedIn) {
+  if (isSignedIn) {
+    signedIn();
+    var auth2 = gapi.auth2.getAuthInstance();
+      var profile = auth2.currentUser.get().getBasicProfile();
+      namn = profile.getName();
+      mail = profile.getEmail();
+      image = profile.getImageUrl();
+      profilepic.src = image;
+      profilepic.classList.remove('invisible');
+  }
+}
+  
+function handleSignInClick(event) {
+  gapi.auth2.getAuthInstance().signIn();
+}
+  
+function handleSignOutClick(event) {
+  gapi.auth2.getAuthInstance().signOut();
+  signedOut();
+}
+
+function signedIn() {
+
+}
+
+function signedOut() {
+    
+}
+
+</script>
+
+</body>
+
+</html>
