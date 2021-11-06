@@ -13,13 +13,42 @@
 <meta name="viewport" content="width=device-width" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <style>
+
+.transition-to-right {
+  position:absolute;
+  width: 300vw;
+  height: 200vh;
+  top: auto;
+  left: 100%;
+  bottom: auto;
+  right: auto;
+  background-color: #05A89D;
+  z-index: 9999;
+  transition-delay: 0.5;
+  transform:rotate(45deg);
+  transition: all 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#transition-2 {
+  background-color: #0d655e;
+  transition-delay: 0.5s;
+  height: 80vh;
+  left: 20%;
+  transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.transition-to-right.active-transition {
+  left: -270% !important;
+}
 
     * {
         font-family: 'Montserrat', sans-serif;
-
     }
+
     #flaska {
         position: fixed;
         left: -20%;
@@ -50,10 +79,26 @@
     }
     body {
       box-sizing: border-box;
-        margin: 0;
-        background-color: #05A89D;
-        overflow: none;
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to left, #008B82, #05A89D);
     }
+
+    @media not all and (min-resolution:.001dpcm) { 
+     @supports (-webkit-appearance:none) {
+      body {
+    background: color(display-p3 0.00 0.6711 0.6305  / 1) !important;
+  }
+     }
+}
+
+.views {
+  visibility: hidden;
+}
+
+.active-view {
+  visibility: visible;
+}
 
     h1{
         width: 100%;
@@ -63,6 +108,11 @@
         margin-bottom: 0;
     }
 
+    h2 {
+      font-size: 30px;
+      margin: 10px;
+    }
+
     p {
         width: 100%;
         color: #005751;
@@ -70,6 +120,7 @@
         margin-top: 0;
         margin-bottom:0;
     }
+
     #log-in-view {
         width: 100vw;
         height: 97vh;
@@ -77,6 +128,7 @@
         justify-content: center;
         align-items: center;
     }
+
     #log-in {
         justify-content: space-evenly;
         display: flex;
@@ -141,7 +193,7 @@
     }
 
 .invisible {
-  display: none !important;
+  visibility: hidden;
 }
 
 #kommande {
@@ -154,12 +206,12 @@
         font-family: 'Montserrat', sans-serif;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         text-align: center;
-        height: 34vh;
-        width: 34vw;
-        left: -10vw;
-        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
         position: relative;
         z-index: 100;
+        box-sizing: border-box;
     }
 
 #main {
@@ -199,12 +251,231 @@
     }
 }
 
+#upcoming-container {
+        justify-content: space-evenly;
+        display: flex;
+        padding: 30px;
+        color: #005751;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        height: 68vh;
+        width: 34vw;
+        flex-direction: column;
+        position: relative;
+        z-index: 100;
+        margin-bottom: 30px;
+}
+
+#upcoming-title {
+  color: white;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.teams {
+  width: 50%;
+}
+
+.team-img {
+  clip-path: circle(closest-side at center);
+  width: 200px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+#lag1 {
+  padding-right: 10px;
+}
+#lag2 {
+   border-left: 1px solid;
+   border-color: #C4C4C4;
+   padding-left: 10px;
+}
+
+#vs {
+  position: absolute;
+  top: 30%;
+  margin:0;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bet-input {
+margin-top: 10px;
+outline:none;
+appearance: none;
+border: none;
+text-align: center;
+font-size: 70px;
+width: 100%;
+background-color: #ffffff00;
+font-weight: 700;
+color: #005751;
+}
+
+.bet-input::placeholder{
+  color:#005751;
+}
+ 
+.bet-input:focus::placeholder {
+  color: white;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+button {
+  padding: 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 50px;
+  color: white;
+  background-color: #0d655e;
+}
+
+#add-bet {
+  position: absolute;
+  bottom: -20px;
+  width: 40%;
+  overflow:hidden;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+#add-bet:hover {
+  background-color: #05A89D;
+  transform: scale(1.05);
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: rgba(50, 50, 93, 0.1) 0px 50px 60px 50px, rgba(0, 0, 0, 0.1) 0px 30px 60px 10px;
+}
+
+#log-out {
+position: absolute;
+top: 32px;
+right: 0;
+padding: 10px 20px;
+transition: all 0.7s cubic-bezier(.75,.07,.9,.71) 0.7s;
+opacity:0;
+cursor: pointer;
+}
+
+#log-out:hover {
+  right: 110px;
+  opacity:1;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#profilepic.invisible {
+    top: -70px;
+    z-index: 9999;
+}
+
+#profilepic:hover {
+    transform: rotate(360deg) scale(1.5);
+    box-shadow: rgb(38, 57, 77) 0px 0px 30px -10px;
+}
+
+#profilepic:hover + button {
+    right: 120px;
+    opacity:1;
+    transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#profilepic {
+  z-index: 100;
+  height: 55px;
+  border-radius: 50%;
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width:55px;
+  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  object-fit: cover;
+}
+
+#right-container {
+  margin: auto;
+  margin: 0;
+  padding: 30px;
+  margin-left: 30px;
+  box-sizing: border-box;
+}
+
+#rules {
+  background-color: #0d655e;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+}
+
+#rules-title {
+  text-align: center;
+  color: white;
+  font-weight:600;
+  font-size: 30px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+#rules-table {
+  margin: auto;
+  padding: 20px;
+}
+
+.explain {
+  color: white;
+}
+
+.point {
+  padding: 10px;
+  color:#FFCA01;
+  font-weight: 600;
+}
+
+tr {
+  border-bottom: 1px solid;
+  border-color: #05A89D;
+  padding: 10px;
+}
+
+
+#add-bet::before{
+    content: "";
+    height: 160%;
+    width: 40px;
+    background: rgba(255,255,255,.3);
+    position: absolute;
+    top: -20px;
+    transform: translateX(-125px) rotate(20deg);
+    transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#add-bet:hover::before{
+    transform: translateX(160px) rotate(20deg);
+}
+
 
 </style>
 </head>
 <body>
+  <div class="transition-to-right"></div>
+  <div id="transition-2" class="transition-to-right"></div>
 <div id="container">
-  <div class="invisible" id="log-in-view">
+  <div id="log-in-view" class="login-view views">
     <img id="logo" src="logo.png">
     <div id="log-in">
          <h1>Välkommen</h1>
@@ -217,19 +488,52 @@
     <h2 id="tagline"> Sommarens <span style="color: #FFCA01">exklusiva</span> folkfest!</h2>
     <p id="tagline-2">Har du vad som krävs eller kommer det att bubbla över?</p>
   </div>
-<div id="main">
+<div id="main" class="betting-view views active-view">
+  <img src="/se.png" id="profilepic">
+  <button id="log-out">Logga ut</button>
   <img id="pokal" src="pokal.png"> 
+  <div id="upcoming-container">
+  <h1 id="upcoming-title">Kommande match</h1>
   <div id="kommande">
-    <div id="lag1">
-
+    <div class="teams" id="lag1">
+      <img class="team-img" id="team1-img" src="/se.png">
+      <h2>Sverige</h2>
+      <input placeholder="0" max="20" min="0" type="number" class="bet-input" id="team1-bet">
     </div>
-    <div id="lag2">
-
+    <div class="teams" id="lag2">
+      <img class="team-img" id="team2-img" src="/se.png">
+      <h2>Sverige</h2>
+      <input placeholder="0" max="20" min="0" type="number" class="bet-input" id="team2-bet">
     </div>
-    vs
-    <div id="rules"></div>
+    <div id="vs">vs</div>
+    <button id="add-bet">Lägg bet</button>
   </div>
 </div>
+<div id="right-container">
+  <h1 id="rules-title">Poängsystem</h1>
+  <div id="rules">
+    <table id="rules-table">
+      <tbody>
+        <tr>
+          <td class="point">7p</td>
+          <td class="explain">Rätt matchresultat</td>
+        </tr>
+        <tr>
+          <td class="point">4p</td>
+          <td class="explain">Rätt vinnare & antal mål för ett lag</td>
+        </tr>
+        <tr>
+          <td class="point">3p</td>
+          <td class="explain">Rätt vinnare</td>
+        </tr>
+        <tr>
+          <td class="point">1p</td>
+          <td class="explain">Rätt antal mål för ett lag</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
 
 
 
@@ -237,10 +541,40 @@
 </div>
 
 
-<script>
+<script> 
+let flagDatabase, flags;
+let views = document.querySelectorAll('.views');
+
+fetch('https://flagcdn.com/en/codes.json')
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    flags = Object.entries(data);
+  })
+  .catch(function (err) {
+    // If an error occured, you will catch it here
+  });
 
 
-prompt('hej'); 
+  function getFlagIdFromName(name) {
+    for (let [countryCode, countryName] of flags) {
+      if(countryName == name) {
+        return countryCode;
+      }
+    }
+  }
+
+
+  function switchView(toView) {
+    for (let view of views) {
+      view.classList.toggle('active-view');
+      if (view.classList.contains(toView)) {
+        classList.add('active-view')
+      }
+    }
+  }
+
 
     function makeApiCall(range, admin) {
   var params = {
@@ -350,6 +684,17 @@ function signedIn() {
 
 function signedOut() {
     
+}
+
+const buttons = document.getElementsByTagName("button");
+
+for (const button of buttons) {
+  button.addEventListener('click', function() {
+     var layers = document.querySelectorAll('.transition-to-right');
+     for (const layer of layers) {
+       layer.classList.toggle("active-transition");
+     }
+  });
 }
 
 </script>
