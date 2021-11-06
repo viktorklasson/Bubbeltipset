@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/zobnywpw/public_html/Bubbeltipset.se
+    - /bin/cp -R * $DEPLOYPATH
+    
