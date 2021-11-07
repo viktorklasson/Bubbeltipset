@@ -53,7 +53,7 @@
         position: fixed;
         left: -20%;
         top: 40%;
-        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1)
+        transition: 0.5s cubic-bezier(0.215, 0.610, 0.355, 1)
     }
     #flaska:hover {
         left: -15%;
@@ -64,7 +64,8 @@
         position: fixed;
         left: -6%;
         bottom: -5%;
-        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1)
+        transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition-delay: 0.5s;
     }
     #soccer {
         border-radius: 100%;
@@ -92,12 +93,8 @@
      }
 }
 
-.views {
-  visibility: hidden;
-}
-
-.active-view {
-  visibility: visible;
+.unactive-view {
+  opacity: 0;
 }
 
     h1{
@@ -133,7 +130,8 @@
         justify-content: space-evenly;
         display: flex;
         background-color: white;
-        padding: 30px;
+        padding: 15px;
+        padding-bottom: 10px;
         color: #005751;
         border-radius: 40px;
         font-family: 'Montserrat', sans-serif;
@@ -176,6 +174,7 @@
         z-index: 101;
     }
     #tagline {
+        margin-bottom: 20px;
         color: white;
         position: fixed;
         bottom: 6vh;
@@ -193,8 +192,13 @@
     }
 
 .invisible {
-  visibility: hidden;
+  opacity: 0;
 }
+
+.removed {
+  display: none !important;
+}
+
 
 #kommande {
         justify-content: space-evenly;
@@ -379,7 +383,7 @@ cursor: pointer;
   transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-#profilepic.invisible {
+.unactive-view #profilepic {
     top: -70px;
     z-index: 9999;
 }
@@ -468,12 +472,21 @@ tr {
     transform: translateX(160px) rotate(20deg);
 }
 
+.betting-view.unactive-view #pokal {
+  left: -25%;
+}
+
+.views {
+  transition: opacity 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 
 </style>
 </head>
 <body>
   <div class="transition-to-right"></div>
-  <div id="transition-2" class="transition-to-right"></div>
+  <div id="transition-2" class=" transition-to-right"></div>
+  <img src="/se.png" class="betting-view removed unactive-view" id="profilepic">
 <div id="container">
   <div id="log-in-view" class="login-view views">
     <img id="logo" src="logo.png">
@@ -481,15 +494,14 @@ tr {
          <h1>Välkommen</h1>
          <p>Registera ditt bet </br>
          och bubbla på!</p>
-         <button id="sign-in-button">Logga in <i class="fas fa-sign-in-alt"></i></button>
+         <button onclick="switchView('betting-view');" id="sign-in-button">Logga in <i class="fas fa-sign-in-alt"></i></button>
     </div>
     <img id="flaska" src="flaska.png"> 
     <img id="soccer" src="soccer.png"> 
     <h2 id="tagline"> Sommarens <span style="color: #FFCA01">exklusiva</span> folkfest!</h2>
     <p id="tagline-2">Har du vad som krävs eller kommer det att bubbla över?</p>
   </div>
-<div id="main" class="betting-view views active-view">
-  <img src="/se.png" id="profilepic">
+<div id="main" class="betting-view views unactive-view removed">
   <button id="log-out">Logga ut</button>
   <img id="pokal" src="pokal.png"> 
   <div id="upcoming-container">
@@ -535,9 +547,6 @@ tr {
     </div>
 </div>
 
-
-
-
 </div>
 
 
@@ -568,12 +577,24 @@ fetch('https://flagcdn.com/en/codes.json')
 
   function switchView(toView) {
     for (let view of views) {
-      view.classList.toggle('active-view');
-      if (view.classList.contains(toView)) {
-        classList.add('active-view')
+      if (!view.classList.contains(toView)) {
+        view.classList.add('unactive-view')
+      } else {
+        view.classList.remove('removed');
+        setTimeout(function() {
+        view.classList.remove('unactive-view');
+      },500);
       }
+    setTimeout( 
+        function() {
+          for (let view of views) {
+      if (view.classList.contains('unactive-view')) {
+        view.classList.add('removed');
+      };
     }
-  }
+  },500);
+}
+}
 
 
     function makeApiCall(range, admin) {
